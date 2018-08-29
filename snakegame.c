@@ -46,9 +46,9 @@ int main(int argc, char* argv[]){
 	createsnake();
     food = createfood();
 	
-	while(1){			
+	while(1){			//while gameover() is not true, keep looping
 		
-		Sleep(speed);
+		Sleep(speed);		//speed of game going
 
 		char dirc;
 
@@ -56,7 +56,7 @@ int main(int argc, char* argv[]){
 			food = createfood();
 		}
 	
-		if(kbhit()){	//if user input
+		if(kbhit()){	//if user have input
 			dirc = getch();		//get input direction
 			if(move(dirc, head->x, head->y) == 0){
 				
@@ -80,6 +80,7 @@ int main(int argc, char* argv[]){
 return 1;
 }
 
+/*initialize game setting*/
 void init(){
 	
 	int level = 2;
@@ -174,6 +175,7 @@ void createsnake(){
 
 }
 
+/*control snake*/
 int move(char dir, int x, int y){
 	
 	tolower(dir);		
@@ -259,6 +261,7 @@ int move(char dir, int x, int y){
 	return 1;
 }
 
+/*return 1 if food eaten else return 0*/
 int eatfood(int X, int Y){
 	
 	if(food == NULL || head == NULL){
@@ -317,7 +320,7 @@ int gameover(){
 	return 1;
 }
 
-void gotoxy(int x,int y){				//go to x-y location 
+void gotoxy(int x,int y){				//go to x-y location of the map
 	coord.X=x;
 	coord.Y=y;
 	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coord);
